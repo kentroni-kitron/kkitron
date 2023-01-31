@@ -40,3 +40,7 @@ Thumbs.db
 
 # env files
 *.env
+
+# generated
+libs/passta-api/generated/db-types/src/index.ts
+libs/kkitron-oauth/generated/db-types/src/index.ts

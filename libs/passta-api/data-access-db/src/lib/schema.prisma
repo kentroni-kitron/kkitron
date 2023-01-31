@@ -16,7 +16,7 @@ generator nestgraphql {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("PASSTA_DATABASE_URL")
 }
 
 model User {
