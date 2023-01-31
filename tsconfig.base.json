@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@kkitron/passta-api/data-access-db": [
+        "libs/passta-api/data-access-db/src/index.ts"
+      ],
+      "@kkitron/passta-api/generated/db-types": [
+        "libs/passta-api/generated/db-types/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

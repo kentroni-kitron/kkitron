@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  passta-db:
+    image: postgres
+    ports:
+      - '5000:5432'
+    volumes:
+      - passta-api:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: myimmaculouslysecretpassword
+      PGDATA: /var/lib/postgresql/data/data
+
+volumes:
+  passta-api:

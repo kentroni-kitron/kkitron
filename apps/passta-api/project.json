@@ -57,5 +57,7 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "scope:passta-api"
+  ]
 }
