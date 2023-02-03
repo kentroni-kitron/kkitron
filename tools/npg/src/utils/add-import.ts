@@ -1,4 +1,5 @@
 import { tsquery } from '@phenomnomnominal/tsquery';
+import { ImportDeclaration } from 'typescript';
 
 export const addImport = (options: {
   file: string,
@@ -17,7 +18,15 @@ export const addImport = (options: {
 
   const ast = tsquery.ast(file);
   const allImports = tsquery(ast, 'ImportDeclaration');
-  const lastImport = allImports[allImports.length - 1];
+  const lastImport = allImports[allImports.length - 1] as ImportDeclaration;
+  let lastImportModuleType: 'lib' | 'local';
+  if (lastImport.moduleSpecifier.getText().match(/^'(\w|@)/)) {
+    lastImportModuleType = 'lib';
+  } else if (lastImport.moduleSpecifier.getText().match(/^'\./)) {
+    lastImportModuleType = 'local';
+  }
+
+  const startPadding = lastImportModuleType === 'local' ? '\n' : padding;
 
   return tsquery.replace(
     file,
@@ -25,7 +34,7 @@ export const addImport = (options: {
     node => {
       const importClause = isNamed ? `{ ${name} }` : name;
       const importDeclaration = `import ${importClause} from '${source}'`;
-      return `${node.getText()}${padding}${importDeclaration}${padding}`;
+      return `${node.getText()}${startPadding}${importDeclaration}${padding}`;
     },
   )
 };

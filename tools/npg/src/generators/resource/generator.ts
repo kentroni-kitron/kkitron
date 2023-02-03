@@ -1,28 +1,29 @@
 import * as path from 'path';
 import { camelCase, pascalCase } from 'change-case';
-
 import {
   formatFiles,
   generateFiles,
   getWorkspaceLayout,
   Tree,
 } from '@nrwl/devkit';
+import { tsquery } from '@phenomnomnominal/tsquery';
 
 import { ResourceGeneratorSchema } from './schema';
 import { NormalizedSchema } from './types';
 import { addImport, trimLineBreaks } from '../../utils';
-import { tsquery } from '@phenomnomnominal/tsquery';
 
 export default async function (tree: Tree, options: ResourceGeneratorSchema) {
   const { appsDir, npmScope } = getWorkspaceLayout(tree);
-  const { project, name, namePascal, namePascalSingle } = options;
+  const { project, name } = options;
   const nameSingle = options.nameSingle ?? name.replace(/s$/, '');
+  const namePascal = options.namePascal ?? pascalCase(name);
+  const namePascalSingle = options.namePascalSingle ?? pascalCase(nameSingle);
   const normalizedSchema: NormalizedSchema = {
     ...options,
     projectLib: options.projectLib ?? project,
     nameSingle,
-    namePascal: namePascal ?? pascalCase(name),
-    namePascalSingle: options.namePascalSingle ?? pascalCase(nameSingle),
+    namePascal,
+    namePascalSingle,
     nameCamel: camelCase(namePascal),
     nameCamelSingle: camelCase(namePascalSingle),
     npmScope,

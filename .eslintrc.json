@@ -9,12 +9,24 @@
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
           {
-            "enforceBuildableLibDependency": true,
             "allow": [],
+            // update depConstraints based on your tags
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "scope:tools",
+                "onlyDependOnLibsWithTags": ["scope:tools"]
+              },
+              {
+                "sourceTag": "scope:passta-api",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:passta-api"]
+              },
+              {
+                "sourceTag": "scope:kkitron-oauth",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth"]
               }
             ]
           }
