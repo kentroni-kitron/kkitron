@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "Resource",
+  "title": "Nest + Prisma + GraphQL Resource Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the resource in kebab-case, plural.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for this resource (kebab-case, plural, e.g., `user-bikes`)?"
+    },
+    "project": {
+      "description": "The Nest project to target.",
+      "type": "string",
+      "$default": {
+        "$source": "projectName"
+      },
+      "alias": "p",
+      "x-prompt": "What Nest project would you like to target?"
+    },
+    "appDirectory": {
+      "description": "App directory relative to the project directory",
+      "type": "string",
+      "default": "src/app"
+    },
+    "resourcesDirectory": {
+      "description": "Resources directory relative to the app directory (param above)",
+      "type": "string",
+      "default": "resources"
+    },
+    "projectLib": {
+      "description": "The folder containing project libraries",
+      "type": "string",
+      "$default": {
+        "$source": "project"
+      }
+    },
+    "dataAccessDbDirectory": {
+      "description": "Data Access DB lib directory inside libs folder",
+      "type": "string",
+      "default": "data-access-db"
+    },
+    "dbTypesDirectory": {
+      "description": "Generated Types lib directory inside libs folder",
+      "type": "string",
+      "default": "generated/db-types"
+    },
+    "numericId": {
+      "description": "Whether the id of the model is numeric (alternative is uuid string)",
+      "type": "boolean",
+      "default": true
+    },
+    "nameSingle": {
+      "description": "Name of a single entity (if default isn't working for you)",
+      "type": "string"
+    },
+    "namePascal": {
+      "description": "Name in PascalCase (if default isn't working for you)",
+      "type": "string"
+    },
+    "namePascalSingle": {
+      "description": "Name in PascalCase of a single entity (if default isn't working for you)",
+      "type": "string"
+    }
+  },
+  "required": ["name", "project"]
+}

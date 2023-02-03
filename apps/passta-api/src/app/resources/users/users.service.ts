@@ -8,7 +8,7 @@ import {
 } from '@kkitron/passta-api/generated/db-types';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(private readonly db: DbService) {}
 
   create(userCreateInput: UserCreateInput) {

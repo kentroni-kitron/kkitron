@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 
 import {
   User,
@@ -6,11 +6,11 @@ import {
   UserUpdateInput,
 } from '@kkitron/passta-api/generated/db-types';
 
-import { UserService } from './user.service';
+import { UsersService } from './users.service';
 
 @Resolver(() => User)
-export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+export class UsersResolver {
+  constructor(private readonly userService: UsersService) {}
 
   @Mutation(() => User)
   createUser(@Args('userCreateInput') userCreateInput: UserCreateInput) {
