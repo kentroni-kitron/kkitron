@@ -4,16 +4,17 @@
   "license": "MIT",
   "scripts": {
     "start:passta:dev": "---",
-    "passta:dev:api": "nx serve passta-api",
+    "passta:api:dev": "nx serve passta-api",
+    "kkitron-oauth:api:dev": "nx serve kkitron-oauth-api",
     "<DATABASE>": "-------------------------------------------------------------------------------",
     "db:up": "npm run db:docker && npm run db:dev-migrate && npm run db:create-clients",
     "db:docker": "docker-compose -f tools/docker-env/dev.docker-compose.yml up -d --no-recreate --remove-orphans",
     "db:create-clients": "npm run db:create-client:passta && npm run db:create-client:kkitron-oauth",
     "db:create-client:passta": "prisma generate --schema ./libs/passta-api/data-access-db/src/lib/schema.prisma",
-    "db:create-client:kkitron-oauth": "prisma generate --schema ./libs/kkitron-oauth/data-access-db/src/lib/schema.prisma",
+    "db:create-client:kkitron-oauth": "prisma generate --schema ./libs/kkitron-oauth-api/data-access-db/src/lib/schema.prisma",
     "db:dev-migrate": "npm run db:dev-migrate:passta && npm run db:dev-migrate:kkitron-oauth",
     "db:dev-migrate:passta": "env-cmd --no-override -f .local.env npx prisma migrate dev --schema ./libs/passta-api/data-access-db/src/lib/schema.prisma",
-    "db:dev-migrate:kkitron-oauth": "env-cmd --no-override -f .local.env npx prisma migrate dev --schema ./libs/kkitron-oauth/data-access-db/src/lib/schema.prisma",
+    "db:dev-migrate:kkitron-oauth": "env-cmd --no-override -f .local.env npx prisma migrate dev --schema ./libs/kkitron-oauth-api/data-access-db/src/lib/schema.prisma",
     "</DATABASE>": "------------------------------------------------------------------------------"
   },
   "prisma": {

@@ -1,0 +1,63 @@
+{
+  "name": "kkitron-oauth-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kkitron-oauth-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/kkitron-oauth-api",
+        "main": "apps/kkitron-oauth-api/src/main.ts",
+        "tsConfig": "apps/kkitron-oauth-api/tsconfig.app.json",
+        "assets": ["apps/kkitron-oauth-api/src/assets"],
+        "webpackConfig": "apps/kkitron-oauth-api/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "options": {
+        "buildTarget": "kkitron-oauth-api:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "kkitron-oauth-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kkitron-oauth-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/kkitron-oauth-api/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": [
+    "scope:kkitron-oauth-api"
+  ]
+}

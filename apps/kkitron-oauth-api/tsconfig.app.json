@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["node"],
+    "emitDecoratorMetadata": true,
+    "target": "es2015",
+    "composite": true,
+    "declaration": true
+  },
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "include": ["src/**/*.ts"],
+  "files": [
+    "../../libs/kkitron-oauth-api/data-access-db/src/index.ts",
+    "../../libs/kkitron-oauth-api/data-access-db/src/lib/db.service.ts",
+    "../../libs/kkitron-oauth-api/generated/db-types/src/index.ts",
+  ]
+}

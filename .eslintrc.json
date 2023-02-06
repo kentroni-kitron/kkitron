@@ -25,8 +25,8 @@
                 "onlyDependOnLibsWithTags": ["scope:shared", "scope:passta-api"]
               },
               {
-                "sourceTag": "scope:kkitron-oauth",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth"]
+                "sourceTag": "scope:kkitron-oauth-api",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth-api"]
               }
             ]
           }
