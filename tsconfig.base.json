@@ -15,18 +15,21 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@kkitron/npg": ["tools/npg/src/index.ts"],
       "@kkitron/kkitron-oauth-api/data-access-db": [
         "libs/kkitron-oauth-api/data-access-db/src/index.ts"
       ],
       "@kkitron/kkitron-oauth-api/generated/db-types": [
         "libs/kkitron-oauth-api/generated/db-types/src/index.ts"
       ],
+      "@kkitron/npg": ["tools/npg/src/index.ts"],
       "@kkitron/passta-api/data-access-db": [
         "libs/passta-api/data-access-db/src/index.ts"
       ],
       "@kkitron/passta-api/generated/db-types": [
         "libs/passta-api/generated/db-types/src/index.ts"
+      ],
+      "@kkitron/passta-web/generated/graphql-types": [
+        "libs/passta-web/generated/graphql-types/src/index.ts"
       ]
     }
   },

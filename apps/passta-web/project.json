@@ -1,0 +1,71 @@
+{
+  "name": "passta-web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/passta-web",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/passta-web",
+        "outputPath": "dist/apps/passta-web"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/passta-web"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "passta-web:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "passta-web:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "passta-web:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "passta-web:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/passta-web/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/passta-web/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": [
+    "scope:passta-web"
+  ]
+}

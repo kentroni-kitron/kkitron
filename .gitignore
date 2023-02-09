@@ -41,6 +41,11 @@ Thumbs.db
 # env files
 *.env
 
+# Next.js
+.next
+
 # generated
 libs/passta-api/generated/db-types/src/index.ts
 libs/kkitron-oauth-api/generated/db-types/src/index.ts
+libs/passta-web/generated/graphql-types/src/lib/types.ts
+apps/passta-web/api/**/*.gen.ts
