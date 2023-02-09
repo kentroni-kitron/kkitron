@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "cli": "nx",
+  "title": "Next Serve",
+  "description": "Serve a Next.js app with a configuration specified in env file",
+  "type": "object",
+  "properties": {
+    "dev": {
+      "type": "boolean",
+      "description": "Serve the application in the dev mode.",
+      "default": true
+    },
+    "portEnv": {
+      "type": "string",
+      "description": "What is the name of the env variable for application port"
+    },
+    "buildTarget": {
+      "type": "string",
+      "description": "Target which builds the application.",
+      "x-priority": "important"
+    },
+    "port": {
+      "type": "number",
+      "description": "Port to listen on.",
+      "default": 4200
+    },
+    "staticMarkup": {
+      "type": "boolean",
+      "description": "Static markup.",
+      "default": false
+    },
+    "quiet": {
+      "type": "boolean",
+      "description": "Hide error messages containing server information.",
+      "default": false
+    },
+    "customServerTarget": {
+      "type": "string",
+      "description": "Target which builds the custom server."
+    },
+    "customServerPath": {
+      "type": "string",
+      "description": "Use a custom server script.",
+      "x-deprecated": "Use `customServerTarget` instead."
+    },
+    "hostname": {
+      "type": "string",
+      "description": "Hostname on which the application is served."
+    },
+    "proxyConfig": {
+      "type": "string",
+      "description": "Path to the proxy configuration file.",
+      "x-completion-type": "file"
+    },
+    "buildLibsFromSource": {
+      "type": "boolean",
+      "description": "Read buildable libraries from source instead of building them separately.",
+      "default": true
+    }
+  },
+  "required": ["buildTarget", "portEnv"]
+}

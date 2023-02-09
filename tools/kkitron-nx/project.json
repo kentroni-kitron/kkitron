@@ -1,35 +1,35 @@
 {
-  "name": "npg",
+  "name": "kkitron-nx",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "tools/npg/src",
+  "sourceRoot": "tools/kkitron-nx/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/tools/npg",
-        "main": "tools/npg/src/index.ts",
-        "tsConfig": "tools/npg/tsconfig.lib.json",
+        "outputPath": "dist/libs/../tools/kkitron-nx",
+        "main": "tools/kkitron-nx/src/index.ts",
+        "tsConfig": "tools/kkitron-nx/tsconfig.lib.json",
         "assets": [
-          "tools/npg/*.md",
+          "tools/kkitron-nx/*.md",
           {
-            "input": "./tools/npg/src",
+            "input": "./tools/kkitron-nx/src",
             "glob": "**/!(*.ts)",
             "output": "./src"
           },
           {
-            "input": "./tools/npg/src",
+            "input": "./tools/kkitron-nx/src",
             "glob": "**/*.d.ts",
             "output": "./src"
           },
           {
-            "input": "./tools/npg",
+            "input": "./tools/kkitron-nx",
             "glob": "generators.json",
             "output": "."
           },
           {
-            "input": "./tools/npg",
+            "input": "./tools/kkitron-nx",
             "glob": "executors.json",
             "output": "."
           }
@@ -41,10 +41,10 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "tools/npg/**/*.ts",
-          "tools/npg/generators.json",
-          "tools/npg/executors.json",
-          "tools/npg/package.json"
+          "tools/kkitron-nx/**/*.ts",
+          "tools/kkitron-nx/generators.json",
+          "tools/kkitron-nx/executors.json",
+          "tools/kkitron-nx/package.json"
         ]
       }
     },
@@ -52,7 +52,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "tools/npg/jest.config.ts",
+        "jestConfig": "tools/kkitron-nx/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -63,7 +63,5 @@
       }
     }
   },
-  "tags": [
-    "scope:tools"
-  ]
+  "tags": []
 }

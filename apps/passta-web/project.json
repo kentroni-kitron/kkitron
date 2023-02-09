@@ -20,10 +20,11 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/next:server",
+      "executor": "@kkitron/nx:next",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "passta-web:build",
+        "portEnv": "PASSTA_WEB_PORT",
         "dev": true
       },
       "configurations": {

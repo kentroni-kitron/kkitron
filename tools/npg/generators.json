@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "name": "..-tools-npg",
+  "name": "npg",
   "version": "0.0.1",
   "generators": {
     "resource": {

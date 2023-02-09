@@ -22,6 +22,7 @@
         "libs/kkitron-oauth-api/generated/db-types/src/index.ts"
       ],
       "@kkitron/npg": ["tools/npg/src/index.ts"],
+      "@kkitron/nx": ["tools/kkitron-nx/src/index.ts"],
       "@kkitron/passta-api/data-access-db": [
         "libs/passta-api/data-access-db/src/index.ts"
       ],
