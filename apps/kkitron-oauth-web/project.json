@@ -1,0 +1,72 @@
+{
+  "name": "kkitron-oauth-web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kkitron-oauth-web",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/kkitron-oauth-web",
+        "outputPath": "dist/apps/kkitron-oauth-web"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/kkitron-oauth-web"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@kkitron/nx:next",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "kkitron-oauth-web:build",
+        "portEnv": "KKITRON_OAUTH_WEB_PORT",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "kkitron-oauth-web:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "kkitron-oauth-web:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "kkitron-oauth-web:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/kkitron-oauth-web/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kkitron-oauth-web/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": [
+    "scope:kkitron-oauth-web"
+  ]
+}

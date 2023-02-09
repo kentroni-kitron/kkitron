@@ -12,6 +12,8 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
+  app.enableCors({ origin: true });
+
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,

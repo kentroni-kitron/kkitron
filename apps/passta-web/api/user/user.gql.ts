@@ -9,4 +9,15 @@ const GET_USER = gql`
       lastName
     }
   }
-`
+`;
+
+const GET_USERS = gql`
+  query GetUsers {
+    users {
+      id
+      email
+      firstName
+      lastName
+    }
+  }
+`;

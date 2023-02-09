@@ -21,6 +21,9 @@
       "@kkitron/kkitron-oauth-api/generated/db-types": [
         "libs/kkitron-oauth-api/generated/db-types/src/index.ts"
       ],
+      "@kkitron/kkitron-oauth-web/generated/graphql-types": [
+        "libs/kkitron-oauth-web/generated/graphql-types/src/index.ts"
+      ],
       "@kkitron/npg": ["tools/npg/src/index.ts"],
       "@kkitron/nx": ["tools/kkitron-nx/src/index.ts"],
       "@kkitron/passta-api/data-access-db": [

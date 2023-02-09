@@ -1,17 +1,16 @@
 import { withApi } from '../api/api';
-import { useGetUsersQuery } from '../api/user/user.gql.gen';
+import { useGetOAuthClientsQuery } from '../api/oauth-client/oauth-client.gql.gen';
 import styles from './index.module.scss';
 
 export function Index() {
-  const [{ data, fetching }] = useGetUsersQuery()
-
+  const [{ data, fetching }] = useGetOAuthClientsQuery();
   return (
     <div className={styles.page}>
       <div className="wrapper">
         <div className="container">
           <div id="welcome">
             <h1>
-              Hi, users of this app:
+              Hi, OAuthClients
             </h1>
             {fetching ? <div>Fetching</div> : <table>
               <thead>
@@ -22,11 +21,10 @@ export function Index() {
                 </tr>
               </thead>
               <tbody>
-                {data.users.map(({ id, firstName, lastName }) => {
+                {data.oAuthClients.map(({ id, name }) => {
                   return (<tr key={id}>
                     <td>{id}</td>
-                    <td>{firstName}</td>
-                    <td>{lastName}</td>
+                    <td>{name}</td>
                   </tr>);
                 })}
               </tbody>
