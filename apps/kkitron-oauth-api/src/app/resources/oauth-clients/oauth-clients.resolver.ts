@@ -1,14 +1,15 @@
-import { Resolver, Query, Mutation, Args, Int, Context, GqlExecutionContext, ResolveField, Parent } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
 
 import {
   OAuthClient,
   OAuthClientCreateInput,
   OAuthClientUpdateInput,
 } from '@kkitron/kkitron-oauth-api/generated/db-types';
-import { ExecutionContext } from '@nestjs/common';
 
 import { OAuthClientsService } from './oauth-clients.service';
 import { OAuthScopesService } from '../oauth-scopes/oauth-scopes.service';
+import { CheckAuthGuard } from '../../guards/check-auth.guard';
 
 @Resolver(() => OAuthClient)
 export class OAuthClientsResolver {
@@ -17,6 +18,7 @@ export class OAuthClientsResolver {
     private readonly oAuthScopeService: OAuthScopesService,
   ) {}
 
+  @UseGuards(CheckAuthGuard)
   @Mutation(() => OAuthClient)
   createOAuthClient(
     @Args('oAuthClientCreateInput')
@@ -25,6 +27,7 @@ export class OAuthClientsResolver {
     return this.oAuthClientService.create(oAuthClientCreateInput);
   }
 
+  @UseGuards(CheckAuthGuard)
   @Query(() => [OAuthClient], { name: 'oAuthClients' })
   findAll() {
     return this.oAuthClientService.findAll();

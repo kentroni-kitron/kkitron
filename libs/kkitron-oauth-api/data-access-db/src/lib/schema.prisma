@@ -20,21 +20,40 @@ datasource db {
   url      = env("KKITRON_OAUTH_DATABASE_URL")
 }
 
+model User {
+  id       String @id @default(uuid())
+
+  /// @Validator.IsString()
+  /// @Validator.IsEmail()
+  email    String @unique
+
+  /// @HideField()
+  /// @Validator.MinLength(8)
+  /// @Validator.MaxLength(100)
+  password String @db.VarChar(512)
+
+  /// @HideField()
+  /// @Validator.IsEnum(Role)
+  role     Role
+
+  @@map("users")
+}
+
 model OAuthClient {
-  id        Int       @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
   /// @Validator.IsString()
   /// @Validator.MaxLength(256)
-  name      String    @unique @db.VarChar(256)
+  name String @unique @db.VarChar(256)
 
   /// @Validator.IsString()
   /// @Validator.IsOptional()
   /// @Validator.MaxLength(256)
-  secret    String?   @db.VarChar(256)
+  secret String? @db.VarChar(256)
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
-  createdAt DateTime  @default(now()) @map("created_at")
+  createdAt DateTime @default(now()) @map("created_at")
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
@@ -49,16 +68,16 @@ model OAuthClient {
 }
 
 model OAuthRedirectUri {
-  id        Int       @id @default(autoincrement())
-  clientId  Int       @map("client_id")
+  id       Int @id @default(autoincrement())
+  clientId Int @map("client_id")
 
   /// @Validator.IsString()
   /// @Validator.MaxLength(256)
-  uri       String    @unique @db.VarChar(256)
+  uri String @unique @db.VarChar(256)
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
-  createdAt DateTime  @default(now()) @map("created_at")
+  createdAt DateTime @default(now()) @map("created_at")
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
@@ -70,16 +89,16 @@ model OAuthRedirectUri {
 }
 
 model OAuthScope {
-  id        Int       @id @default(autoincrement())
-  clientId  Int       @map("client_id")
+  id       Int @id @default(autoincrement())
+  clientId Int @map("client_id")
 
   /// @Validator.IsString()
   /// @Validator.MaxLength(256)
-  name      String    @db.VarChar(256)
+  name String @db.VarChar(256)
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
-  createdAt DateTime  @default(now()) @map("created_at")
+  createdAt DateTime @default(now()) @map("created_at")
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
@@ -93,26 +112,26 @@ model OAuthScope {
 }
 
 model OAuthCode {
-  id                  Int                  @id @default(autoincrement())
-  clientId            Int                  @map("client_id")
+  id       Int @id @default(autoincrement())
+  clientId Int @map("client_id")
 
   /// @Validator.IsString()
   /// @Validator.MaxLength(256)
-  userId              String?              @map("user_id") @db.VarChar(256)
+  userId String? @map("user_id") @db.VarChar(256)
 
   /// @Validator.IsString()
   /// @Validator.MaxLength(512)
-  code                String               @unique @db.VarChar(512)
+  code String @unique @db.VarChar(512)
 
   /// @Validator.IsString()
   /// @Validator.IsOptional()
   /// @Validator.MaxLength(256)
-  redirectUri         String?              @map("redirect_uri") @db.VarChar(256)
+  redirectUri String? @map("redirect_uri") @db.VarChar(256)
 
   /// @Validator.IsString()
   /// @Validator.IsOptional()
   /// @Validator.MaxLength(512)
-  codeChallenge       String?              @map("code_challenge") @db.VarChar(512)
+  codeChallenge String? @map("code_challenge") @db.VarChar(512)
 
   /// @Validator.IsEnum(CodeChallengeMethod)
   /// @Validator.IsOptional()
@@ -120,11 +139,11 @@ model OAuthCode {
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
-  createdAt           DateTime             @default(now()) @map("created_at")
+  createdAt DateTime @default(now()) @map("created_at")
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
-  updatedAt           DateTime?            @updatedAt @map("updated_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
 
   client OAuthClient  @relation(fields: [clientId], references: [id], onDelete: Cascade, name: "oauth_codes_to_clients")
   scopes OAuthScope[] @relation("oauth_codes_to_scopes")
@@ -133,35 +152,35 @@ model OAuthCode {
 }
 
 model OAuthToken {
-  id                    Int       @id @default(autoincrement())
-  clientId              Int       @map("client_id")
+  id       Int @id @default(autoincrement())
+  clientId Int @map("client_id")
 
   /// @Validator.IsString()
   /// @Validator.IsOptional()
   /// @Validator.MaxLength(256)
-  userId                String?   @map("user_id")
+  userId String? @map("user_id")
 
   /// @Validator.IsString()
   /// @Validator.MaxLength(256)
-  accessToken           String    @unique @map("access_token") @db.VarChar(512)
+  accessToken String @unique @map("access_token") @db.VarChar(512)
 
   /// @Validator.IsDateString()
-  accessTokenExpiresAt  DateTime  @map("access_token_expires_at")
+  accessTokenExpiresAt DateTime @map("access_token_expires_at")
 
   /// @Validator.IsString()
   /// @Validator.MaxLength(256)
-  refreshToken          String    @unique @map("refresh_token") @db.VarChar(512)
+  refreshToken String @unique @map("refresh_token") @db.VarChar(512)
 
   /// @Validator.IsDateString()
-  refreshTokenExpiresAt DateTime  @map("refresh_token_expires_at")
-
-  /// @Validator.IsDateString()
-  /// @Validator.IsOptional()
-  createdAt             DateTime  @default(now()) @map("created_at")
+  refreshTokenExpiresAt DateTime @map("refresh_token_expires_at")
 
   /// @Validator.IsDateString()
   /// @Validator.IsOptional()
-  updatedAt             DateTime? @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  /// @Validator.IsDateString()
+  /// @Validator.IsOptional()
+  updatedAt DateTime? @updatedAt @map("updated_at")
 
   client OAuthClient  @relation(fields: [clientId], references: [id], onDelete: Cascade, name: "oauth_tokens_to_clients")
   scopes OAuthScope[] @relation("oauth_tokens_to_scopes")
@@ -174,4 +193,11 @@ enum CodeChallengeMethod {
   plain
 
   @@map("code_challenge_method")
+}
+
+enum Role {
+  Admin
+  User
+
+  @@map("role")
 }

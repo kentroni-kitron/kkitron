@@ -59,7 +59,7 @@ export default async function (tree: Tree, options: ResourceGeneratorSchema) {
       ArrayLiteralExpression >
       *:last-child
     `,
-    node => `${node.getText()},\n    ${options.namePascal}Module`,
+    node => `${node.getText()},\n    ${namePascal}Module`,
   );
 
   const trimmedLineBreaks = trimLineBreaks(addedImportInArray);

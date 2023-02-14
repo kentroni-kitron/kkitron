@@ -2,6 +2,7 @@ import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestFastifyApplication, FastifyAdapter } from '@nestjs/platform-fastify';
 import { ValidationError } from 'class-validator';
+import fastifyCookie from '@fastify/cookie';
 
 import { AppModule } from './app/app.module';
 import { LogExecutionTimeInterceptor } from './app/log-execution-time.interceptor';
@@ -12,7 +13,12 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  app.enableCors({ origin: true });
+  await app.register(fastifyCookie, { secret: process.env.KKITRON_OAUTH_COOKIE_SECRET });
+
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
 
   app.useGlobalPipes(
     new ValidationPipe({
