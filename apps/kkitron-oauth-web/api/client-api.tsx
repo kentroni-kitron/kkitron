@@ -7,6 +7,8 @@ import {
   Provider,
   ssrExchange,
 } from 'urql';
+import { isAuthError } from './shared';
+
 const isClient = typeof window !== 'undefined';
 
 export const ssrCache = ssrExchange({
@@ -22,7 +24,9 @@ export const clientApi = createClient({
     ssrCache,
     errorExchange({
       onError: (error) => {
-        console.log('error: ', error);
+        if (isAuthError(error)) {
+          console.log('TODO: log out');
+        }
       }
     }),
     fetchExchange,
