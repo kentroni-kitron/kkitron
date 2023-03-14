@@ -1,6 +1,8 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { Header } from '../../components';
+
 import { withApi } from '../../api/client-api';
 import { useSignUpMutation } from '../../api/auth/auth.gql.gen';
 import styles from './index.module.scss';
@@ -22,10 +24,10 @@ export const SignUpPage = () => {
     <div className={styles.page}>
       <div className="wrapper">
         <div className="container">
+          <Header withoutLogout />
           <form
             onSubmit={submitSignUp}
-            className="form-group"
-            style={{ display: 'flex', flexDirection: 'column' }}
+            className={styles.formGroup}
           >
             <label htmlFor="email">Email</label>
             <input

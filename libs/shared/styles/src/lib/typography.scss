@@ -1,0 +1,172 @@
+/* title */
+
+.t-title-main-20,
+.t-title-main-24,
+.t-title-main-upp-20 {
+  font-family: 'Roboto Mono', 'Courier New';
+  font-weight: 500;
+}
+
+.t-title-main-20, .t-title-main-upp-20 {
+  font-size: 5rem;
+  line-height: 6.5rem;
+}
+
+.t-title-main-24 {
+  font-size: 6rem;
+  line-height: 8rem;
+}
+
+.t-title-main-upp-20 {
+  text-transform: uppercase;
+}
+
+/* input */
+
+.t-input-tech-12,
+.t-input-code-upp-14 {
+  font-family: 'Roboto Mono', 'Courier New';
+  font-weight: 300;
+}
+
+.t-input-tech-12 {
+  font-size: 3rem;
+  line-height: 4rem;
+}
+
+.t-input-label-upp-14,
+.t-input-14 {
+  font-family: 'Roboto', Verdana, sans-serif;
+  font-weight: 300;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  letter-spacing: 0.05em;
+}
+
+.t-input-label-upp-14 {
+  text-transform: uppercase;
+}
+
+.t-input-code-upp-14 {
+  font-size: 3.5rem;
+  line-height: 4.5rem;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* button */
+
+.t-button-upp-20 {
+  font-family: 'Roboto', Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 5rem;
+  line-height: 6rem;
+  letter-spacing: 0.25rem;
+  text-transform: uppercase;
+}
+
+/* text */
+
+.t-text-thin-und-12,
+.t-text-light-14,
+.t-text-light-16,
+.t-text-link-light-16,
+.t-text-14,
+.t-text-16,
+.t-text-18,
+.t-text-sup-light-14 {
+  font-family: 'Roboto', Verdana, sans-serif;
+  line-height: 1.25;
+}
+
+.t-text-thin-und-12 {
+  font-weight: 100;
+  font-size: 3rem;
+  text-decoration: underline;
+}
+
+.t-text-light-14,
+.t-text-light-16,
+.t-text-sup-light-14 {
+  font-weight: 300;
+}
+
+.t-text-light-14,
+.t-text-14,
+.t-text-sup-light-14 {
+  font-size: 3.5rem;
+}
+
+.t-text-light-16,
+.t-text-link-light-16,
+.t-text-16 {
+  font-size: 4rem;
+}
+
+.t-text-link-light-16 {
+  text-decoration: underline;
+}
+
+.t-text-14,
+.t-text-16,
+.t-text-18 {
+  font-weight: 400;
+}
+
+.t-text-18 {
+  font-size: 4.5rem;
+}
+
+/* menu */
+
+.t-menu-light-12,
+.t-menu-12,
+.t-menu-edit-light-12 {
+  font-family: 'Roboto', Verdana, sans-serif;
+  font-size: 3rem;
+  line-height: 3.5rem;
+  letter-spacing: 0.25rem;
+}
+
+.t-menu-light-12,
+.t-menu-edit-light-12 {
+  font-weight: 300;
+}
+
+.t-menu-12 {
+  font-weight: 400;
+}
+
+.t-menu-edit-light-12 {
+  font-family: 'Roboto Mono', 'Courier New';
+  line-height: 4rem;
+}
+
+/* avatar */
+
+.t-avatar-26,
+.t-avatar-18 {
+  font-family: 'Roboto', Verdana, sans-serif;
+  font-weight: 700;
+}
+
+.t-avatar-26 {
+  font-size: 6.5rem;
+  line-height: 7.5rem;
+  letter-spacing: 0.5rem;
+}
+
+.t-avatar-18 {
+  font-size: 4.5rem;
+  line-height: 20.25rem;
+  letter-spacing: 0.25rem;
+}
+
+/* card */
+
+.t-card-20 {
+  font-family: 'Roboto Condensed', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 6rem;
+}

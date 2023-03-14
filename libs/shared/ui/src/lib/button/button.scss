@@ -1,0 +1,22 @@
+.kk-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 12rem;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  background: var(--bg-button-active);
+  color: var(--fg-primary);
+
+  &.kk-button--disabled {
+    background: var(--bg-button-disabled);
+    color: var(--fg-disabled);
+    cursor: not-allowed;
+  }
+
+  &.kk-button--loading {
+    color: var(--fg-disabled);
+    cursor: wait;
+  }
+}

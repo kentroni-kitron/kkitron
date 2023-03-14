@@ -5,6 +5,11 @@
       "implementation": "./src/executors/next/executor",
       "schema": "./src/executors/next/schema.json",
       "description": "next executor"
+    },
+    "kkitron-oauth-api": {
+      "implementation": "./src/executors/kkitron-oauth-api/executor",
+      "schema": "../../node_modules/@nrwl/js/src/executors/node/schema.json",
+      "description": "kkitron-oauth-api executor"
     }
   }
 }

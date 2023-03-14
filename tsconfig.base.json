@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@kkitron/shared/utils": ["libs/shared/utils/src/index.ts"],
       "@kkitron/kkitron-oauth-api/data-access-db": [
         "libs/kkitron-oauth-api/data-access-db/src/index.ts"
       ],
@@ -25,6 +24,8 @@
       "@kkitron/kkitron-oauth-web/generated/graphql-types": [
         "libs/kkitron-oauth-web/generated/graphql-types/src/index.ts"
       ],
+      "@kkitron/npg": ["tools/npg/src/index.ts"],
+      "@kkitron/nx": ["tools/kkitron-nx/src/index.ts"],
       "@kkitron/passta-api/data-access-db": [
         "libs/passta-api/data-access-db/src/index.ts"
       ],
@@ -34,8 +35,9 @@
       "@kkitron/passta-web/generated/graphql-types": [
         "libs/passta-web/generated/graphql-types/src/index.ts"
       ],
-      "@kkitron/npg": ["tools/npg/src/index.ts"],
-      "@kkitron/nx": ["tools/kkitron-nx/src/index.ts"]
+      "@kkitron/shared/styles": ["libs/shared/styles/src/index.ts"],
+      "@kkitron/shared/ui/*": ["libs/shared/ui/src/*"],
+      "@kkitron/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

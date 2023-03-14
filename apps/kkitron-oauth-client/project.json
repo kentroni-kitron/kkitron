@@ -1,0 +1,84 @@
+{
+  "name": "kkitron-oauth-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kkitron-oauth-client/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/kkitron-oauth-client",
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/styles/src/lib"
+          ]
+        }
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "kkitron-oauth-client:build",
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "libs/shared/styles/src/lib"
+          ]
+        }
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "kkitron-oauth-client:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "kkitron-oauth-client:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "kkitron-oauth-client:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "kkitron-oauth-client:build:development"
+        },
+        "production": {
+          "buildTarget": "kkitron-oauth-client:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/apps/kkitron-oauth-client"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/kkitron-oauth-client"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kkitron-oauth-client/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": [
+    "scope:kkitron-oauth-client"
+  ]
+}

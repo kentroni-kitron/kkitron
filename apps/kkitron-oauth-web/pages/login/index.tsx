@@ -1,8 +1,12 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { Header } from '../../components';
+
 import { withApi } from '../../api/client-api';
 import { useLoginMutation } from '../../api/auth/auth.gql.gen';
+
+
 import styles from './index.module.scss';
 
 export const LoginPage = () => {
@@ -13,8 +17,7 @@ export const LoginPage = () => {
 
   const submitLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const result = await login({ args: { email, password } });
-    console.log('result: ', result);
+    await login({ args: { email, password } });
     router.push('/');
   }
 
@@ -22,10 +25,10 @@ export const LoginPage = () => {
     <div className={styles.page}>
       <div className="wrapper">
         <div className="container">
+          <Header withoutLogout />
           <form
+            className={styles['form-group']}
             onSubmit={submitLogin}
-            className="form-group"
-            style={{ display: 'flex', flexDirection: 'column' }}
           >
             <label htmlFor="email">Email</label>
             <input
@@ -47,7 +50,7 @@ export const LoginPage = () => {
 
             <hr />
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit">
               Login
             </button>
           </form>

@@ -35,6 +35,10 @@
               {
                 "sourceTag": "scope:kkitron-oauth-web",
                 "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth-web"]
+              },
+              {
+                "sourceTag": "scope:kkitron-oauth-client",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth-client"]
               }
             ]
           }

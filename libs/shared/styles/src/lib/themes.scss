@@ -1,0 +1,27 @@
+.theme-dark {
+  --bg-main: var(--black-23);
+  --bg-primary: var(--black-28);
+  --bg-secondary: var(--black-26);
+  --bg-primary-active: var(--black-21);
+  --bg-accent: var(--blue-accented-75);
+  --bg-button-active: var(--gradient-blue-accented);
+  --bg-button-disabled: var(--gradient-blue-accented-disabled);
+  --fg-primary: var(--white);
+  --fg-disabled: var(--white-st-50);
+  --fg-error: var(--red-57);
+  --fg-error-disabled: var(--red-57-st-50);
+}
+
+.theme-light {
+  --bg-main: var(--white);
+  --bg-primary: var(--black-28-st-30);
+  --bg-secondary: var(--black-28-st-70);
+  --bg-primary-active: var(--black-28-st-70);
+  --bg-accent: var(--blue-accented-75);
+  --bg-button-active: var(--gradient-blue-saturated);
+  --bg-button-disabled: var(--gradient-blue-accented-disabled);
+  --fg-primary: var(--black-21);
+  --fg-disabled: var(--black-21-st-50);
+  --fg-error: var(--red-57);
+  --fg-error-disabled: var(--red-57-st-50);
+}

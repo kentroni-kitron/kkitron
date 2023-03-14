@@ -14,6 +14,17 @@ const GET_OAUTH_CLIENTS = gql`
     oAuthClients {
       id
       name
+      redirectUris { id uri }
+      scopes { id name }
+    }
+  }
+`;
+
+const CREATE_OAUTH_CLIENT = gql`
+  mutation CreateOAuthClient ($args: OAuthClientCreateInput!) {
+    createOAuthClient(oAuthClientCreateInput: $args) {
+      id
+      name
     }
   }
 `;

@@ -1,0 +1,16 @@
+.kk-card {
+  padding: 8rem;
+  background: var(--bg-secondary);
+  border-radius: 1.25rem;
+
+  &__title {
+    margin-bottom: 1.5rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}

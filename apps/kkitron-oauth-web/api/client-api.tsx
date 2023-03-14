@@ -1,3 +1,4 @@
+import { NextRouter, useRouter } from 'next/router';
 import { FC } from 'react';
 import {
   cacheExchange,
@@ -16,7 +17,7 @@ export const ssrCache = ssrExchange({
   initialState: isClient ? window['__URQL_DATA__'] : undefined
 });
 
-export const clientApi = createClient({
+export const clientApi = (router: NextRouter) => createClient({
   url: process.env.KKITRON_API_URL,
   fetchOptions: { credentials: 'include' },
   exchanges: [
@@ -25,7 +26,7 @@ export const clientApi = createClient({
     errorExchange({
       onError: (error) => {
         if (isAuthError(error)) {
-          console.log('TODO: log out');
+          router.push('/login');
         }
       }
     }),
@@ -35,12 +36,14 @@ export const clientApi = createClient({
 
 export const withApi = (Component: FC) => {
   return function ApiWrappedComponent({ ...properties }) {
+    const router = useRouter();
+
     if (properties.urqlState) {
       ssrCache.restoreData(properties.urqlState);
     }
 
     return (
-      <Provider value={clientApi}>
+      <Provider value={clientApi(router)}>
         <Component {...properties} />
       </Provider>
     )

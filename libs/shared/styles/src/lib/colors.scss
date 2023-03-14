@@ -1,0 +1,54 @@
+:root {
+  /* black */
+  --black-21: #323239;
+  --black-23: #37373F;
+  --black-26: #3E3E47;
+  --black-28: #42424C;
+  --black-21-st-50: rgba(50, 50, 57, 0.5);
+  --black-28-st-70: rgba(66, 66, 76, 0.7);
+  --black-28-st-30: rgba(66, 66, 76, 0.3);
+
+  /* white */
+  --white: #FFFCFF;
+  --white-st-75: rgba(255, 252, 255, 0.75);
+  --white-st-50: rgba(255, 252, 255, 0.5);
+  --white-st-25: rgba(255, 252, 255, 0.25);
+  --white-st-15: rgba(255, 252, 255, 0.15);
+  --white-st-05: rgba(255, 252, 255, 0.05);
+
+  /* blue */
+  --blue-accented-85: #B3B3FF;
+  --blue-accented-75: #8080FF;
+  --blue-dim-52: #6464A6;
+  --blue-dim-44: #52528E;
+
+  /* red */
+  --red-57: #D94A56;
+  --red-57-st-50: rgba(217, 74, 86, 0.5);
+
+  /* green */
+  --green-59: #BADA55;
+
+  /* gradient */
+  --gradient-blue-saturated: linear-gradient(135deg, #3939C0 0%, #3947C0 100%);
+  --gradient-blue-accented: linear-gradient(135deg, #9185FF 0%, #8080FF 50.52%, #8095FF 100%);
+  --gradient-blue-accented-disabled: linear-gradient(
+    91.35deg,
+    rgba(126, 126, 200, 0.8) 0%,
+    rgba(126, 134, 200, 0.8) 100%
+  );
+  --gradient-motley: linear-gradient(135deg, #41C5D7 0%, #7474C3 65.1%, #9352FF 100%);
+  --gradient-lemon: linear-gradient(135deg, #F7DE87 0%, #DDE963 100%);
+  --gradient-pinky: linear-gradient(135deg, #CC6672 0%, #CC66A5 61.98%, #CC66C7 100%);
+  --gradient-motley-st-50: linear-gradient(
+    135deg,
+    rgba(65, 197, 215, 0.5) 0%,
+    rgba(116, 116, 195, 0.5) 65.1%,
+    rgba(147, 82, 255, 0.5) 100%
+  );
+
+  /* shadow */
+  --shadow-4: 0px 1.33px 1.33px rgba(18, 18, 19, 0.18), 0px 0px 4px rgba(18, 18, 19, 0.18);
+  --shadow-6: 0px 2px 2px rgba(18, 18, 19, 0.18), 0px 0px 6px rgba(18, 18, 19, 0.18);
+  --shadow-12: 0px 4px 4px rgba(18, 18, 19, 0.18), 0px 0px 12px rgba(18, 18, 19, 0.18);
+}

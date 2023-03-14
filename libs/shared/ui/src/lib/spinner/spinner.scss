@@ -1,0 +1,15 @@
+@keyframes kk-spinner {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.kk-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: var(--fg-primary);
+  border-left-color: transparent;
+  animation: kk-spinner 0.8s linear infinite;
+}
