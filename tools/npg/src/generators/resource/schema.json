@@ -66,7 +66,21 @@
     "namePascalSingle": {
       "description": "Name in PascalCase of a single entity (if default isn't working for you)",
       "type": "string"
+    },
+    "interceptorsDirectory": {
+      "description": "Where to take interceptors",
+      "type": "string",
+      "default": "@kkitron/shared/npg-utils"
+    },
+    "usersServiceDirectory": {
+      "description": "Users service for auth purposes",
+      "type": "string",
+      "default": "../users/users.service"
+    },
+    "jwtSecret": {
+      "description": "Jwt Secret variable name",
+      "type": "string"
     }
   },
-  "required": ["name", "project"]
+  "required": ["name", "project", "jwtSecret"]
 }

@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { NestFastifyApplication, FastifyAdapter } from '@nestjs/platform-fastify';
 import { ValidationError } from 'class-validator';
 import fastifyCookie from '@fastify/cookie';
+import secureSession from '@fastify/secure-session';
 
 import { AppModule } from './app/app.module';
 import { LogExecutionTimeInterceptor } from './app/log-execution-time.interceptor';
@@ -14,6 +15,10 @@ async function bootstrap() {
   );
 
   await app.register(fastifyCookie, { secret: process.env.KKITRON_OAUTH_COOKIE_SECRET });
+  await app.register(secureSession, {
+    secret: process.env.KKITRON_OAUTH_SESSION_SECRET,
+    salt: process.env.KKITRON_OAUTH_SESSION_SALT,
+  });
 
   app.enableCors({
     origin: true,

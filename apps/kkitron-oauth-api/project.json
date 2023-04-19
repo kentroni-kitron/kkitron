@@ -58,6 +58,7 @@
     }
   },
   "tags": [
-    "scope:kkitron-oauth-api"
+    "scope:kkitron-oauth-api",
+    "scope:"
   ]
 }

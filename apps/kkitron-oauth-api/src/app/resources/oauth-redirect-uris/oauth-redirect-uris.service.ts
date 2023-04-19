@@ -24,6 +24,10 @@ export class OAuthRedirectUrisService {
     return this.db.oAuthRedirectUri.findUnique({ where: { id } });
   }
 
+  findByClientId(clientId: OAuthRedirectUri['client']['id']) {
+    return this.db.oAuthRedirectUri.findMany({ where: { clientId } });
+  }
+
   update(id: OAuthRedirectUri['id'], oAuthRedirectUriUpdateInput: OAuthRedirectUriUpdateInput) {
     return this.db.oAuthRedirectUri.update({ where: { id }, data: oAuthRedirectUriUpdateInput });
   }

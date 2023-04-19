@@ -1,10 +1,16 @@
-import { createClient, fetchExchange, ssrExchange, TypedDocumentNode } from 'urql';
+import {
+  createClient,
+  fetchExchange,
+  SSRData,
+  ssrExchange,
+  TypedDocumentNode,
+} from 'urql';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { DocumentNode } from 'graphql';
-import { SSRData } from '@urql/core/dist/types/exchanges/ssr';
-import { isAuthError } from './shared';
 
-type SsrResult = GetServerSidePropsResult<{ urqlState?: SSRData }>;
+import { authExchange, TokenStorage } from './auth-exchange';
+
+type SsrResult = GetServerSidePropsResult<{ urqlState?: SSRData, token?: string }>;
 type SsrQuery<D, V> = DocumentNode | TypedDocumentNode<D, V> | string;
 type SsrContext = GetServerSidePropsContext;
 
@@ -21,7 +27,11 @@ export async function serverQuery<
   const serverClient = createClient({
     url: process.env.KKITRON_API_URL,
     fetchOptions: { headers: { cookie } },
-    exchanges: [ssrCache, fetchExchange],
+    exchanges: [
+      ssrCache,
+      authExchange,
+      fetchExchange,
+    ],
   });
 
   try {
@@ -30,14 +40,15 @@ export async function serverQuery<
       .toPromise();
 
     if (!error) {
-      return { props: { urqlState: ssrCache.extractData() } };
+      return {
+        props: {
+          urqlState: ssrCache.extractData(),
+          token: TokenStorage.get(),
+        },
+      };
     }
 
-    if (isAuthError(error)) {
-      context.res.setHeader('set-cookie', ['token=']);
-      context.res.setHeader('set-cookie', ['token-expires=']);
-      return { redirect: { permanent: false, destination: '/login' } };
-    }
+    return { redirect: { permanent: false, destination: '/login' } };
   } catch (error) {
     console.log('server side query unexpected error', error);
   }

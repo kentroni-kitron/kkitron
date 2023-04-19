@@ -8,7 +8,9 @@ import {
   Provider,
   ssrExchange,
 } from 'urql';
+
 import { isAuthError } from './shared';
+import { TokenStorage, authExchange } from './auth-exchange';
 
 const isClient = typeof window !== 'undefined';
 
@@ -23,9 +25,10 @@ export const clientApi = (router: NextRouter) => createClient({
   exchanges: [
     cacheExchange,
     ssrCache,
+    authExchange,
     errorExchange({
       onError: (error) => {
-        if (isAuthError(error)) {
+        if (isAuthError(error) && isClient) {
           router.push('/login');
         }
       }
@@ -40,6 +43,10 @@ export const withApi = (Component: FC) => {
 
     if (properties.urqlState) {
       ssrCache.restoreData(properties.urqlState);
+    }
+
+    if (properties.token) {
+      TokenStorage.store(properties.token);
     }
 
     return (

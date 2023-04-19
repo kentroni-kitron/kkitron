@@ -18,6 +18,10 @@ export class UsersService {
     return this.db.user.findUnique({ where: { email } });
   }
 
+  findById(id: User['id']) {
+    return this.db.user.findUnique({ where: { id } });
+  }
+
   remove(id: User['id']) {
     return this.db.user.delete({ where: { id } });
   }

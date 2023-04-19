@@ -12,8 +12,9 @@ const SIGN_UP = gql`
 const LOGIN = gql`
   mutation Login($args: LoginInput!) {
     login(loginInput: $args) {
-      id
-      email
+      user { id, email }
+      token
+      tokenExpires
     }
   }
 `;
@@ -21,5 +22,15 @@ const LOGIN = gql`
 const LOGOUT = gql`
   mutation Logout {
     logout
+  }
+`;
+
+export const REFRESH = gql`
+  mutation Refresh {
+    refresh {
+      user { id, email }
+      token
+      tokenExpires
+    }
   }
 `;

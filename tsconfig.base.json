@@ -35,8 +35,11 @@
       "@kkitron/passta-web/generated/graphql-types": [
         "libs/passta-web/generated/graphql-types/src/index.ts"
       ],
+      "@kkitron/shared/nest-utils": ["libs/shared/nest-utils/src/index.ts"],
+      "@kkitron/shared/npg-utils": ["libs/shared/npg-utils/src/index.ts"],
+      "@kkitron/shared/react-ui/*": ["libs/shared/react-ui/src/*"],
+      "@kkitron/shared/react-utils": ["libs/shared/react-utils/src/index.ts"],
       "@kkitron/shared/styles": ["libs/shared/styles/src/index.ts"],
-      "@kkitron/shared/ui/*": ["libs/shared/ui/src/*"],
       "@kkitron/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },

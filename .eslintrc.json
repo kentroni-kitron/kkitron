@@ -21,24 +21,65 @@
                 "onlyDependOnLibsWithTags": ["scope:tools"]
               },
               {
+                "sourceTag": "scope:shared:api",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:shared:api"]
+              },
+              {
+                "sourceTag": "scope:shared:nest",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:shared:nest"]
+              },
+              {
+                "sourceTag": "scope:shared:web",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:shared:web"]
+              },
+              {
+                "sourceTag": "scope:shared:react",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:shared:react"]
+              },
+              {
                 "sourceTag": "scope:passta-api",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:passta-api"]
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:shared:api",
+                  "scope:shared:nest",
+                  "scope:passta-api"
+                ]
               },
               {
                 "sourceTag": "scope:kkitron-oauth-api",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth-api"]
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:shared:api",
+                  "scope:shared:nest",
+                  "scope:kkitron-oauth-api"
+                ]
               },
               {
                 "sourceTag": "scope:passta-web",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:passta-web"]
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:shared:web",
+                  "scope:shared:react",
+                  "scope:passta-web"
+                ]
               },
               {
                 "sourceTag": "scope:kkitron-oauth-web",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth-web"]
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:shared:web",
+                  "scope:shared:react",
+                  "scope:kkitron-oauth-web"
+                ]
               },
               {
                 "sourceTag": "scope:kkitron-oauth-client",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:kkitron-oauth-client"]
+                "onlyDependOnLibsWithTags": [
+                  "scope:shared",
+                  "scope:shared:web",
+                  "scope:shared:react",
+                  "scope:kkitron-oauth-client"
+                ]
               }
             ]
           }

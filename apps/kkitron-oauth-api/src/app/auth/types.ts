@@ -4,7 +4,7 @@ import { User } from '@kkitron/kkitron-oauth-api/generated/db-types';
 
 export interface UserContext {
   reply: FastifyReply,
-  request: FastifyRequest,
+  req: FastifyRequest,
   user: User,
 };
 

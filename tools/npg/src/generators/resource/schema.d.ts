@@ -10,4 +10,6 @@ export interface ResourceGeneratorSchema {
   nameSingle?: string;
   namePascal?: string;
   namePascalSingle?: string;
+  interceptorsDirectory: string;
+  jwtSecret: string;
 }

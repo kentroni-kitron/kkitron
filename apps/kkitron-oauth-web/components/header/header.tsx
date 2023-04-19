@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import { withApi } from '../../api/client-api';
 import { useLogoutMutation } from '../../api/auth/auth.gql.gen';
+import { TokenStorage } from '../../api/auth-exchange';
 
 import styles from './header.module.scss';
 
@@ -15,6 +16,8 @@ const Header = ({ withoutLogout = false }) => {
     event.preventDefault();
 
     await logout({});
+    await fetch('/api/log-out');
+    TokenStorage.remove();
 
     router.push('/login')
   };
