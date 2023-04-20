@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start:passta": "env-cmd -f .local.env concurrently --kill-others \"npm:passta:api:dev\" \"npm:passta:web:dev\"",
-    "start:kkitron-oauth": "env-cmd -f .local.env concurrently --kill-others \"npm:kkitron-oauth:api:dev\" \"npm:kkitron-oauth:web:dev\"",
+    "start:kkitron-oauth": "env-cmd -f .local.env concurrently --kill-others \"npm:kkitron-oauth:api:dev\" \"npm:kkitron-oauth:web:dev\" \"npm:kkitron-oauth:client:dev\"",
     "passta:api:dev": "nx serve passta-api",
     "passta:web:dev": "nx serve passta-web",
     "kkitron-oauth:api:dev": "nx serve kkitron-oauth-api",

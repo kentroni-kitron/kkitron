@@ -4,8 +4,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { DbService } from '@kkitron/passta-api/data-access-db';
 
 import { AuthResolver } from './auth.resolver';
-import { AuthService } from './auth.service';
-import { CheckAuthGuard } from './guards/check-auth.guard';
 import { UsersService } from '../resources/users/users.service';
 
 @Module({
@@ -17,10 +15,8 @@ import { UsersService } from '../resources/users/users.service';
   ],
   providers: [
     AuthResolver,
-    AuthService,
     DbService,
     UsersService,
-    CheckAuthGuard,
   ],
 })
 export class AuthModule {}

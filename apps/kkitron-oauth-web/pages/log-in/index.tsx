@@ -9,7 +9,7 @@ import { TokenStorage } from '../../api/auth-exchange';
 
 import styles from './index.module.scss';
 
-export const LoginPage = () => {
+export const LogInPage = () => {
   const emailRef = useRef('');
   const passwordRef = useRef('');
   const [, login] = useLoginMutation();
@@ -71,4 +71,4 @@ export const LoginPage = () => {
   );
 };
 
-export default withApi(LoginPage);
+export default withApi(LogInPage);

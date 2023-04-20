@@ -6,7 +6,7 @@ export enum OAuthService {
 };
 
 @InputType()
-export class OAuthLoginInput {
+export class OAuthLogInInput {
   @Field(() => OAuthService, { nullable: false })
   @Validator.IsEnum(OAuthService)
   service!: keyof typeof OAuthService;

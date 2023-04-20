@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { Role, User } from '@kkitron/kkitron-oauth-api/generated/db-types';
 
 import { UsersService } from '../resources/users/users.service';
-import { LoginInput } from './dto/login-input.dto';
+import { LogInInput } from './dto/log-in-input.dto';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,7 @@ export class AuthService {
     return isMatched ? user : null;
   }
 
-  async signUp(signUpInput: LoginInput) {
+  async signUp(signUpInput: LogInInput) {
     const { email, password } = signUpInput;
     const hashedPassword = await bcrypt.hash(password, 10);
 

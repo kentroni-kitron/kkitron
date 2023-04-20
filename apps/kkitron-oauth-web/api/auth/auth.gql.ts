@@ -1,7 +1,7 @@
 import { gql } from 'urql';
 
 const SIGN_UP = gql`
-  mutation SignUp($args: LoginInput!) {
+  mutation SignUp($args: LogInInput!) {
     signUp(signUpInput: $args) {
       id
       email
@@ -10,8 +10,8 @@ const SIGN_UP = gql`
 `;
 
 const LOGIN = gql`
-  mutation Login($args: LoginInput!) {
-    login(loginInput: $args) {
+  mutation Login($args: LogInInput!) {
+    login(logInInput: $args) {
       user { id, email }
       token
       tokenExpires

@@ -8,17 +8,17 @@ import { UserContext } from './types';
 import { SetAuthInterceptorFactory } from './interceptors/set-auth.interceptor';
 import { RefreshAuthInterceptor } from './interceptors/refresh-auth.interceptor';
 import { UnsetAuthInterceptor } from './interceptors/unset-auth.interceptor';
-import { LoginInput } from './dto/login-input.dto';
-import { LoginOutput } from './dto/login-output.dto';
+import { LogInInput } from './dto/log-in-input.dto';
+import { LogInOutput } from './dto/log-in-output.dto';
 
 @Resolver(() => User)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @Mutation(() => LoginOutput)
-  @UseInterceptors(SetAuthInterceptorFactory('loginInput'))
+  @Mutation(() => LogInOutput)
+  @UseInterceptors(SetAuthInterceptorFactory('logInInput'))
   login(
-    @Args('loginInput') _loginInput: LoginInput,
+    @Args('logInInput') _logInInput: LogInInput,
     @Context() context: UserContext,
   ) {
     const request = context.req;
@@ -27,11 +27,11 @@ export class AuthResolver {
   }
 
   @Mutation(() => User)
-  signUp(@Args('signUpInput') signUpInput: LoginInput) {
+  signUp(@Args('signUpInput') signUpInput: LogInInput) {
     return this.authService.signUp(signUpInput);
   }
 
-  @Mutation(() => LoginOutput)
+  @Mutation(() => LogInOutput)
   @UseInterceptors(RefreshAuthInterceptor)
   refresh(
     @Context() context: UserContext,
