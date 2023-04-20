@@ -4,19 +4,19 @@ import { useRouter } from 'next/router';
 import { Header } from '../../components';
 
 import { withApi } from '../../api/client-api';
-import { useLoginMutation } from '../../api/auth/auth.gql.gen';
+import { useLogInMutation } from '../../api/auth/auth.gql.gen';
 import { TokenStorage } from '../../api/auth-exchange';
 
 import styles from './index.module.scss';
 
 export const LogInPage = () => {
-  const emailRef = useRef('');
+  const loginRef = useRef('');
   const passwordRef = useRef('');
-  const [, login] = useLoginMutation();
+  const [, logIn] = useLogInMutation();
   const router = useRouter();
 
-  const setEmail = (value: string) => {
-    emailRef.current = value;
+  const setLogin = (value: string) => {
+    loginRef.current = value;
   };
 
   const setPassword = (value: string) => {
@@ -25,11 +25,11 @@ export const LogInPage = () => {
 
   const submitLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { current: email } = emailRef;
+    const { current: login } = loginRef;
     const { current: password } = passwordRef;
-    const result = await login({ args: { email, password } });
-    if (result.data.login.token) {
-      TokenStorage.store(result.data.login.token);
+    const result = await logIn({ args: { login, password } });
+    if (result.data.logIn.token) {
+      TokenStorage.store(result.data.logIn.token);
       router.push('/');
     }
   }
@@ -43,11 +43,10 @@ export const LogInPage = () => {
             className={styles['form-group']}
             onSubmit={submitLogin}
           >
-            <label htmlFor="email">Email</label>
+            <label htmlFor="login">Login</label>
             <input
-              type="email"
-              id="email"
-              onChange={event => setEmail(event.target.value)}
+              id="login"
+              onChange={event => setLogin(event.target.value)}
             />
 
             <hr />

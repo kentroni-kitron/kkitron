@@ -17,7 +17,7 @@ export class AuthResolver {
 
   @Mutation(() => LogInOutput)
   @UseInterceptors(SetAuthInterceptorFactory('logInInput'))
-  login(
+  logIn(
     @Args('logInInput') _logInInput: LogInInput,
     @Context() context: UserContext,
   ) {
@@ -43,7 +43,7 @@ export class AuthResolver {
 
   @Mutation(() => String)
   @UseInterceptors(UnsetAuthInterceptor)
-  logout() {
+  logOut() {
     return 'bye-bye';
   }
 }

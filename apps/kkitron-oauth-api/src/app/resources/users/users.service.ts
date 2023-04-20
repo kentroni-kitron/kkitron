@@ -14,8 +14,8 @@ export class UsersService {
     return this.db.user.create({ data: userCreateInput });
   }
 
-  findByEmail(email: User['email']) {
-    return this.db.user.findUnique({ where: { email } });
+  findByLogin(login: User['login']) {
+    return this.db.user.findUnique({ where: { login } });
   }
 
   findById(id: User['id']) {

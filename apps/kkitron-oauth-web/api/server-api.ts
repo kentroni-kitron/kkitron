@@ -48,7 +48,7 @@ export async function serverQuery<
       };
     }
 
-    return { redirect: { permanent: false, destination: '/login' } };
+    return { redirect: { permanent: false, destination: '/log-in' } };
   } catch (error) {
     console.log('server side query unexpected error', error);
   }

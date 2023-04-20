@@ -5,6 +5,7 @@ import { SetAuthInterceptor as SetAuthInterceptorNpg } from '@kkitron/shared/npg
 import { User } from '@kkitron/kkitron-oauth-api/generated/db-types';
 
 import { AuthService } from '../auth.service';
+import { isObject } from '@kkitron/shared/utils';
 
 export const SetAuthInterceptorFactory = (inputId: string): Type<SetAuthInterceptorNpg<User>> => {
   @Injectable()
@@ -18,6 +19,17 @@ export const SetAuthInterceptorFactory = (inputId: string): Type<SetAuthIntercep
       protected jwtService: JwtService,
       protected authService: AuthService,
     ) { super(); }
+
+    protected validateUser(requestBody: unknown): Promise<User> {
+      if (!isObject<{ login: string, password: string }>(
+        requestBody,
+        { login: String, password: String },
+      )) {
+        return null;
+      }
+
+      return this.authService.validateUser(requestBody.login, requestBody.password);
+    }
   
     protected userToAccessToken(user: User) {
       return {

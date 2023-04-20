@@ -12,15 +12,10 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 import '@fastify/cookie';
 
 import { AuthInterceptor } from './auth.interceptor';
-import {
-  AuthServiceAbstract,
-  JwtServiceOptionsAbstract,
-  isAuthLoginRequest,
-} from '../../utils';
+import { JwtServiceOptionsAbstract } from '../../utils';
 
 @Injectable()
 export abstract class SetAuthInterceptor<U> extends AuthInterceptor implements NestInterceptor {
-  protected abstract authService: AuthServiceAbstract<U>;
   protected abstract domain: string;
   protected abstract accessTokenExpiresMn: number;
   protected abstract refreshTokenExpiresDs: number;
@@ -28,6 +23,7 @@ export abstract class SetAuthInterceptor<U> extends AuthInterceptor implements N
 
   protected abstract getRequest(context: ExecutionContext): FastifyRequest;
   protected abstract getResponse(context: ExecutionContext): FastifyReply;
+  protected abstract validateUser(requestBody: unknown): Promise<U | null>;
   protected abstract userToAccessToken(user: U): { [key: string]: string | number };
   protected abstract userToRefreshToken(user: U): { [key: string]: string | number };
 
@@ -37,13 +33,7 @@ export abstract class SetAuthInterceptor<U> extends AuthInterceptor implements N
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): Promise<Observable<any>> {
     const request = this.getRequest(context);
-    if (!isAuthLoginRequest(request)) {
-      throw new UnauthorizedException();
-    }
-
-    const { email, password } = request.body;
-
-    const user = await this.authService.validateUser(email, password);
+    const user = await this.validateUser(request.body);
     if (!user) {
       throw new UnauthorizedException();
     }

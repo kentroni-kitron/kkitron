@@ -29,7 +29,7 @@ export const clientApi = (router: NextRouter) => createClient({
     errorExchange({
       onError: (error) => {
         if (isAuthError(error) && isClient) {
-          router.push('/login');
+          router.push('/log-in');
         }
       }
     }),

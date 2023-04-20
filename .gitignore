@@ -48,4 +48,5 @@ Thumbs.db
 libs/passta-api/generated/db-types/src/index.ts
 libs/kkitron-oauth-api/generated/db-types/src/index.ts
 libs/passta-web/generated/graphql-types/src/lib/types.ts
+libs/kkitron-oauth-web/generated/graphql-types/src/lib/types.ts
 **/*.gen.ts

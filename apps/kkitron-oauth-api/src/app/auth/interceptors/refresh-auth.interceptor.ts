@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { RefreshAuthInterceptor as RefreshAuthInterceptorNpg } from '@kkitron/shared/npg-utils';
 import { User } from '@kkitron/kkitron-oauth-api/generated/db-types';
+import { isObject } from '@kkitron/shared/utils';
 
 import { UsersService } from '../../resources/users/users.service';
 
@@ -17,10 +18,18 @@ export class RefreshAuthInterceptor extends RefreshAuthInterceptorNpg<User> {
     protected usersService: UsersService,
   ) { super(); }
 
+  protected getUser(jwtPayload: unknown): Promise<User | null> {
+    if (!isObject<{ id: string }>(jwtPayload, { id: String })) {
+      return null;
+    }
+
+    return this.usersService.findById(jwtPayload.id);
+  }
+
   protected userToAccessToken(user: User) {
     return {
       id: user.id,
-      email: user.email,
+      login: user.login,
       role: user.role,
     };
   }

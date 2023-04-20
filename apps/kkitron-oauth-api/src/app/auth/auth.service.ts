@@ -10,8 +10,8 @@ import { LogInInput } from './dto/log-in-input.dto';
 export class AuthService {
   constructor(private readonly usersService: UsersService) {}
 
-  async validateUser(email: string, password: string): Promise<null | User> {
-    const user = await this.usersService.findByEmail(email);
+  async validateUser(login: string, password: string): Promise<null | User> {
+    const user = await this.usersService.findByLogin(login);
     if (!user) {
       return null;
     }
@@ -21,11 +21,11 @@ export class AuthService {
   }
 
   async signUp(signUpInput: LogInInput) {
-    const { email, password } = signUpInput;
+    const { login, password } = signUpInput;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     return this.usersService.create({
-      email,
+      login,
       password: hashedPassword,
       role: Role.User,
     });

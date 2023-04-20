@@ -8,17 +8,13 @@ import {
 import { Observable } from 'rxjs';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { Serializable, isObject } from '@kkitron/shared/utils';
+import { Serializable } from '@kkitron/shared/utils';
 
 import { AuthInterceptor } from './auth.interceptor';
-import {
-  JwtServiceOptionsAbstract,
-  UsersServiceAbstract,
-} from '../../utils';
+import { JwtServiceOptionsAbstract } from '../../utils';
 
 @Injectable()
 export abstract class RefreshAuthInterceptor<U> extends AuthInterceptor implements NestInterceptor {
-  protected abstract usersService: UsersServiceAbstract<U>;
   protected abstract domain: string;
   protected abstract accessTokenExpiresMn: number;
   protected abstract refreshTokenExpiresDs: number;
@@ -26,6 +22,7 @@ export abstract class RefreshAuthInterceptor<U> extends AuthInterceptor implemen
 
   protected abstract getRequest(context: ExecutionContext): FastifyRequest;
   protected abstract getResponse(context: ExecutionContext): FastifyReply;
+  protected abstract getUser(jwtPayload: unknown): Promise<U | null>;
   protected abstract userToAccessToken(user: U): Serializable;
   protected abstract userToRefreshToken(user: U): Serializable;
 
@@ -41,22 +38,15 @@ export abstract class RefreshAuthInterceptor<U> extends AuthInterceptor implemen
       throw new UnauthorizedException();
     }
 
-    let id: string;
+    let user: U;
     try {
       const result = this.jwtService.verify(token, this.jwtOptions);
-      if (!isObject<{ id: string }>(result, { id: String })) {
+      user = await this.getUser(result);
+      if (!user) {
         this.unsetRefreshToken(response, this.domain);
         throw new UnauthorizedException();
       }
-
-      id = result.id;
     } catch (_e) {
-      this.unsetRefreshToken(response, this.domain);
-      throw new UnauthorizedException();
-    }
-
-    const user = await this.usersService.findById(id);
-    if (!user) {
       this.unsetRefreshToken(response, this.domain);
       throw new UnauthorizedException();
     }

@@ -8,13 +8,8 @@ import {
 import { Observable } from 'rxjs';
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-import { isObject } from '@kkitron/shared/utils';
-
 import { AuthInterceptor } from './auth.interceptor';
-import {
-  JwtServiceOptionsAbstract,
-  UsersServiceAbstract,
-} from '../../utils';
+import { JwtServiceOptionsAbstract } from '../../utils';
 
 export type CheckAuthInterceptorOptions = {
   tokenId: string,
@@ -29,12 +24,12 @@ export type CheckAuthInterceptorOptions = {
 
 @Injectable()
 export abstract class CheckAuthInterceptor<U> extends AuthInterceptor implements NestInterceptor {
-  protected abstract usersService: UsersServiceAbstract<U>;
   protected abstract domain: string;
   protected jwtOptions: JwtServiceOptionsAbstract = {};
 
   protected abstract getRequest(context: ExecutionContext): FastifyRequest;
   protected abstract getResponse(context: ExecutionContext): FastifyReply;
+  protected abstract getUser(jwtPayload: unknown): Promise<U | null>;
 
   async intercept(
     context: ExecutionContext,
@@ -51,20 +46,14 @@ export abstract class CheckAuthInterceptor<U> extends AuthInterceptor implements
       throw new UnauthorizedException();
     }
 
-    let email: string;
+    let user: U;
     try {
       const result = this.jwtService.verify(token, this.jwtOptions);
-      if (!isObject<{ email: string }>(result, { email: String })) {
+      user = await this.getUser(result);
+      if (!user) {
         throw new UnauthorizedException();
       }
-
-      email = result.email;
     } catch (_e) {
-      throw new UnauthorizedException();
-    }
-
-    const user = await this.usersService.findByEmail(email);
-    if (!user) {
       throw new UnauthorizedException();
     }
 

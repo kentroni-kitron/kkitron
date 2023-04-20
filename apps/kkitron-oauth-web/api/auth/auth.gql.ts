@@ -4,15 +4,15 @@ const SIGN_UP = gql`
   mutation SignUp($args: LogInInput!) {
     signUp(signUpInput: $args) {
       id
-      email
+      login
     }
   }
 `;
 
 const LOGIN = gql`
-  mutation Login($args: LogInInput!) {
-    login(logInInput: $args) {
-      user { id, email }
+  mutation LogIn($args: LogInInput!) {
+    logIn(logInInput: $args) {
+      user { id, login }
       token
       tokenExpires
     }
@@ -20,15 +20,15 @@ const LOGIN = gql`
 `;
 
 const LOGOUT = gql`
-  mutation Logout {
-    logout
+  mutation LogOut {
+    logOut
   }
 `;
 
 export const REFRESH = gql`
   mutation Refresh {
     refresh {
-      user { id, email }
+      user { id, login }
       token
       tokenExpires
     }

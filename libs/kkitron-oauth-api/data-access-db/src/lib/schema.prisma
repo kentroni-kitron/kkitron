@@ -21,16 +21,21 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
+  id       String  @id @default(uuid())
+
+  /// @Validator.IsString()
+  /// @Validator.MinLength(3)
+  /// @Validator.MaxLength(64)
+  login    String  @unique
 
   /// @Validator.IsString()
   /// @Validator.IsEmail()
-  email    String @unique
+  email    String?
 
   /// @HideField()
   /// @Validator.MinLength(8)
   /// @Validator.MaxLength(100)
-  password String @db.VarChar(512)
+  password String  @db.VarChar(512)
 
   /// @HideField()
   /// @Validator.IsEnum(Role)

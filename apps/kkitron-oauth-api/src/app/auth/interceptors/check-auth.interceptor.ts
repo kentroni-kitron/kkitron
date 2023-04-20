@@ -5,6 +5,7 @@ import { CheckAuthInterceptor as CheckAuthInterceptorNpg } from '@kkitron/shared
 import { User } from '@kkitron/kkitron-oauth-api/generated/db-types';
 
 import { UsersService } from '../../resources/users/users.service';
+import { isObject } from '@kkitron/shared/utils';
 
 @Injectable()
 export class CheckAuthInterceptor extends CheckAuthInterceptorNpg<User> {
@@ -16,4 +17,12 @@ export class CheckAuthInterceptor extends CheckAuthInterceptorNpg<User> {
     protected jwtService: JwtService,
     protected usersService: UsersService,
   ) { super(); }
+
+  protected getUser(jwtPayload: unknown): Promise<User | null> {
+    if (!isObject<{ login: string }>(jwtPayload, { login: String })) {
+      return null;
+    }
+
+    return this.usersService.findByLogin(jwtPayload.login);
+  }
 }
